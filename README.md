@@ -11,6 +11,7 @@ Known Issues:
 -----
 
 Currently, there are issues with Mailcap so javamail cannot find a correct handler for multipart messages.
+
 The current workaround is to have this piece of code before any Javamail code.
 
 ```java
@@ -33,6 +34,8 @@ This project follows the original licensing of JavaMail.
 As stated [here][1]:
 
 	JavaMail uses several licenses:
-	Most of the JavaMail source code is licensed under the CDDL license and the GPLv2 with Classpath Exception license; see the license information at the top of each source file.
+	Most of the JavaMail source code is licensed under the CDDL license
+	and the GPLv2 with Classpath Exception license; see the license information
+	at the top of each source file.
 
 [1]: http://kenai.com/projects/javamail/pages/License
