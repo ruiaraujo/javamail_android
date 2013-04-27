@@ -41,11 +41,10 @@
 package com.sun.mail.handlers;
 
 import java.io.*;
+import myjava.awt.datatransfer.DataFlavor;
 import javax.activation.*;
 import javax.mail.MessagingException;
 import javax.mail.internet.*;
-
-import myjava.awt.datatransfer.DataFlavor;
 
 
 public class multipart_mixed implements DataContentHandler {

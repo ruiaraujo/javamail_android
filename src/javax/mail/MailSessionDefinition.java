@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -40,45 +40,73 @@
 
 package javax.mail;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
- * This exception is thrown when the connect method on a Store or
- * Transport object fails due to an authentication failure (e.g.,
- * bad user name or password).
+ * Annotation used by Java EE applications to define a <code>MailSession</code>
+ * to be registered with JNDI.  The <code>MailSession</code> may be configured
+ * by setting the annotation elements for commonly used <code>Session</code>
+ * properties.  Additional standard and vendor-specific properties may be
+ * specified using the <code>properties</code> element.
+ * <p/>
+ * The session will be registered under the name specified in the
+ * <code>name</code> element.  It may be defined to be in any valid
+ * <code>Java EE</code> namespace, and will determine the accessibility of
+ * the session from other components.
  *
- * @author Bill Shannon
+ * @since JavaMail 1.5
  */
-
-public class AuthenticationFailedException extends MessagingException {
-
-    private static final long serialVersionUID = 492080754054436511L;
-
-    /**
-     * Constructs an AuthenticationFailedException.
-     */
-    public AuthenticationFailedException() {
-	super();
-    }
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MailSessionDefinition {
 
     /**
-     * Constructs an AuthenticationFailedException with the specified
-     * detail message.
-     *
-     * @param message	The detailed error message
+     * Description of this mail session.
      */
-    public AuthenticationFailedException(String message) {
-	super(message);
-    }
+    String description() default "";
 
     /**
-     * Constructs an AuthenticationFailedException with the specified
-     * detail message and embedded exception.  The exception is chained
-     * to this exception.
-     *
-     * @param message	The detailed error message
-     * @param e		The embedded exception
-     * @since		JavaMail 1.5
+     * JNDI name by which the mail session will be registered.
      */
-    public AuthenticationFailedException(String message, Exception e) {
-	super(message, e);
-    }
+    String name();
+
+    /**
+     * Store protocol name.
+     */
+    String storeProtocol() default "";
+
+    /**
+     * Transport protocol name.
+     */
+    String transportProtocol() default "";
+
+    /**
+     * Host name for the mail server.
+     */
+    String host() default "";
+
+    /**
+     * User name to use for authentication.
+     */
+    String user() default "";
+
+    /**
+     * Password to use for authentication.
+     */
+    String password() default "";
+
+    /**
+     * From address for the user.
+     */
+    String from() default "";
+
+    /**
+     * Properties to include in the Session.
+     * Properties are specified using the format:
+     * <i>propertyName=propertyValue</i> with one property per array element.
+     */
+    String[] properties() default {};
 }

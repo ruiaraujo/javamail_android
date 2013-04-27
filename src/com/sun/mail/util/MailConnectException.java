@@ -38,47 +38,70 @@
  * holder.
  */
 
-package javax.mail;
+package com.sun.mail.util;
+
+import javax.mail.MessagingException;
 
 /**
- * This exception is thrown when the connect method on a Store or
- * Transport object fails due to an authentication failure (e.g.,
- * bad user name or password).
+ * A MessagingException that indicates a socket connection attempt failed.
+ * Unlike java.net.ConnectException, it includes details of what we
+ * were trying to connect to.  The underlying exception is available
+ * as the "cause" of this exception.
  *
- * @author Bill Shannon
+ * @see		java.net.ConnectException
+ * @author	Bill Shannon
+ * @since 	JavaMail 1.5.0
  */
 
-public class AuthenticationFailedException extends MessagingException {
+public class MailConnectException extends MessagingException {
+    private String host;
+    private int port;
+    private int cto;
 
-    private static final long serialVersionUID = 492080754054436511L;
+    private static final long serialVersionUID = -3818807731125317729L;
 
     /**
-     * Constructs an AuthenticationFailedException.
+     * Constructs a MailConnectException.
+     *
+     * @param	cex	the SocketConnectException with the details
      */
-    public AuthenticationFailedException() {
-	super();
+    public MailConnectException(SocketConnectException cex) {
+	super(
+	    "Couldn't connect to host, port: " +
+	    cex.getHost() + ", " + cex.getPort() +
+	    "; timeout " + cex.getConnectionTimeout() +
+	    (cex.getMessage() != null ? ("; " + cex.getMessage()) : ""));
+	// extract the details and save them here
+	this.host = cex.getHost();
+	this.port = cex.getPort();
+	this.cto = cex.getConnectionTimeout();
+	setNextException(cex.getException());
     }
 
     /**
-     * Constructs an AuthenticationFailedException with the specified
-     * detail message.
+     * The host we were trying to connect to.
      *
-     * @param message	The detailed error message
+     * @return	the host
      */
-    public AuthenticationFailedException(String message) {
-	super(message);
+    public String getHost() {
+	return host;
     }
 
     /**
-     * Constructs an AuthenticationFailedException with the specified
-     * detail message and embedded exception.  The exception is chained
-     * to this exception.
+     * The port we were trying to connect to.
      *
-     * @param message	The detailed error message
-     * @param e		The embedded exception
-     * @since		JavaMail 1.5
+     * @return	the port
      */
-    public AuthenticationFailedException(String message, Exception e) {
-	super(message, e);
+    public int getPort() {
+	return port;
+    }
+
+    /**
+     * The timeout used for the connection attempt.
+     *
+     * @return	the connection timeout
+     */
+    public int getConnectionTimeout() {
+	return cto;
     }
 }

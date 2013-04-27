@@ -41,8 +41,7 @@
 package javax.mail.util;
 
 import java.io.*;
-
-import javax.activation.DataSource;
+import javax.activation.*;
 import javax.mail.internet.*;
 
 /**

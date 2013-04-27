@@ -40,6 +40,7 @@
 
 package com.sun.mail.handlers;
 
+import myjava.awt.datatransfer.DataFlavor;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -52,8 +53,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
-import myjava.awt.datatransfer.DataFlavor;
 
 /**
  * DataContentHandler for text/xml.

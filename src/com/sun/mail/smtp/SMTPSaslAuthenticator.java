@@ -43,10 +43,9 @@ package com.sun.mail.smtp;
 import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
-import javax.mail.MessagingException;
-
 import org.apache.harmony.javax.security.auth.callback.*;
 import org.apache.harmony.javax.security.sasl.*;
+import javax.mail.MessagingException;
 
 import com.sun.mail.util.*;
 

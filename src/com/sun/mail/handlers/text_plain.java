@@ -41,10 +41,9 @@
 package com.sun.mail.handlers;
 
 import java.io.*;
+import myjava.awt.datatransfer.DataFlavor;
 import javax.activation.*;
 import javax.mail.internet.*;
-
-import myjava.awt.datatransfer.DataFlavor;
 
 /**
  * DataContentHandler for text/plain.
