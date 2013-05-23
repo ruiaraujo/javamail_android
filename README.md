@@ -1,7 +1,7 @@
 JavaMail for Android
 ================
 
-Javamail 1.4.7 for Android with SASL authentication support.
+Javamail 1.5.0 for Android with SASL authentication support.
 
 This is a JavaMail fork for Android with proper SASL authentication support. 
 It was made to work with this example: 
