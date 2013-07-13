@@ -921,6 +921,12 @@ public final class Session {
 			"imaps", "com.sun.mail.imap.IMAPSSLStore",
 			"Sun Microsystems, Inc.", Version.version));
 	    addProvider(new Provider(Provider.Type.STORE,
+			"gimap", "com.sun.mail.gimap.GmailStore",
+			"Oracle", Version.version));
+	    addProvider(new Provider(Provider.Type.STORE,
+			"gimaps", "com.sun.mail.gimap.GmailSSLStore",
+			"Oracle", Version.version));
+	    addProvider(new Provider(Provider.Type.STORE,
 			"pop3", "com.sun.mail.pop3.POP3Store",
 			"Sun Microsystems, Inc.", Version.version));
 	    addProvider(new Provider(Provider.Type.STORE,
